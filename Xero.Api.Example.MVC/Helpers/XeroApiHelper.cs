@@ -23,21 +23,22 @@ namespace Xero.Api.Example.MVC.Helpers
         static XeroApiHelper()
         {
             // Refer to README.md for details
-            var callbackUrl = "http://mywebsite.url/Home/Authorize";
+            //var callbackUrl = "http://localhost:61795/Home/Authorize";
+            var callbackUrl = "localhost/Home/Authorize";
             var memoryStore = new MemoryAccessTokenStore();
             var requestTokenStore = new MemoryRequestTokenStore();
             var baseApiUrl = "https://api.xero.com";
-            var basePartnerApiUrl = "https://api-partner.network.xero.com";
+            //var basePartnerApiUrl = "https://api-partner.network.xero.com";
 
-            var signingCertificatePath = @"C:\Dev\your_public_privatekey.pfx";
-            var signingCertificatePassword = "Your_signing_cert_password - leave empty if you didn't set one when creating the cert";
-            var clientCertificatePath = @"C:\Dev\your_entrust_cert.p12";
-            var clientCertificatePassword = "your_entrust_cert_password";
+            //var signingCertificatePath = @"C:\Dev\your_public_privatekey.pfx";
+            //var signingCertificatePassword = "Your_signing_cert_password - leave empty if you didn't set one when creating the cert";
+            //var clientCertificatePath = @"C:\Dev\your_entrust_cert.p12";
+            //var clientCertificatePassword = "your_entrust_cert_password";
 
-            var publicAppConsumerKey = "your-public-app-consumer-key";
-            var publicAppConsumerSecret = "your-public-app-consumer-secret";
-            var partnerConsumerKey = "your-partner-app-consumer-key";
-            var partnerConsumerSecret = "your-partner-app-consumer-secret";
+            var publicAppConsumerKey = "D5ZKXU0I8JSD1YRCKMCRCC389NUFWS";
+            var publicAppConsumerSecret = "ELUGVNLLTMUL4KKFKFZMT9JN12UNZJ";
+            //var partnerConsumerKey = "your-partner-app-consumer-key";
+            //var partnerConsumerSecret = "your-partner-app-consumer-secret";
 
             // Public Application Settings
             var publicConsumer = new Consumer(publicAppConsumerKey, publicAppConsumerSecret);
@@ -52,25 +53,25 @@ namespace Xero.Api.Example.MVC.Helpers
                     Authenticator = publicAuthenticator
                 };
 
-            // Partner Application Settings
-            var partnerConsumer = new Consumer(partnerConsumerKey, partnerConsumerSecret);
+            //// Partner Application Settings
+            //var partnerConsumer = new Consumer(partnerConsumerKey, partnerConsumerSecret);
 
-            var partnerAuthenticator = new PartnerMvcAuthenticator(basePartnerApiUrl, baseApiUrl, callbackUrl,
-                    memoryStore, signingCertificatePath, clientCertificatePath, clientCertificatePassword, 
-                    partnerConsumer, requestTokenStore, signingCertificatePassword);
+            //var partnerAuthenticator = new PartnerMvcAuthenticator(basePartnerApiUrl, baseApiUrl, callbackUrl,
+            //        memoryStore, signingCertificatePath, clientCertificatePath, clientCertificatePassword, 
+            //        partnerConsumer, requestTokenStore, signingCertificatePassword);
 
-            var partnerApplicationSettings = new ApplicationSettings
-            {
-                BaseApiUrl = basePartnerApiUrl,
-                Consumer = partnerConsumer,
-                Authenticator = partnerAuthenticator
-            };
+            //var partnerApplicationSettings = new ApplicationSettings
+            //{
+            //    BaseApiUrl = basePartnerApiUrl,
+            //    Consumer = partnerConsumer,
+            //    Authenticator = partnerAuthenticator
+            //};
 
             // Pick one
             // Choose what sort of application is appropriate. Comment out the above code (Partner Application Settings/Public Application Settings) that are not used.
 
-            //_applicationSettings = publicApplicationSettings;
-            _applicationSettings = partnerApplicationSettings;
+            _applicationSettings = publicApplicationSettings;
+            //_applicationSettings = partnerApplicationSettings;
         }
 
         public static ApiUser User()
